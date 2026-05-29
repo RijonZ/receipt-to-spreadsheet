@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const express = require("express");
 const multer = require("multer");
 const OpenAI = require("openai");
+const path = require("path");
 
 dotenv.config();
 
@@ -143,6 +144,12 @@ function toFrontendReceipt(receipt) {
     total: Number(receipt.total ?? 0),
   };
 }
+
+const distPath = path.join(__dirname, "../../frontend/dist");
+app.use(express.static(distPath));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(distPath, "index.html"));
+});
 
 app.listen(port, () => {
   console.log(`Backend running on http://127.0.0.1:${port}`);

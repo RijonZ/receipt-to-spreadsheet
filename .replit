@@ -1,0 +1,12 @@
+run = "npm run install:all && npm run build && npm start"
+entrypoint = "package.json"
+
+[env]
+PORT = "3000"
+
+[packager]
+language = "nodejs"
+
+[[ports]]
+localPort = 3000
+externalPort = 80
