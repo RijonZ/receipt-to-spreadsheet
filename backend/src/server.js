@@ -145,12 +145,13 @@ function toFrontendReceipt(receipt) {
   };
 }
 
-const distPath = path.join(__dirname, "../../frontend/dist");
+const distPath = path.join(process.cwd(), "frontend/dist");
+console.log("Static files path:", distPath);
 app.use(express.static(distPath));
 app.get(/.*/, (req, res) => {
   res.sendFile(path.join(distPath, "index.html"));
 });
 
 app.listen(port, () => {
-  console.log(`Backend running on http://127.0.0.1:${port}`);
+  console.log(`Backend running on port ${port}`);
 });
