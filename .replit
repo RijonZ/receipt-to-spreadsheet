@@ -10,3 +10,7 @@ language = "nodejs"
 [[ports]]
 localPort = 3000
 externalPort = 80
+
+[deployment]
+build = ["sh", "-c", "npm run install:all && npm run build"]
+run = ["sh", "-c", "npm start"]
